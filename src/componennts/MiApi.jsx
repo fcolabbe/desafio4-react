@@ -12,19 +12,23 @@ function MiApi() {
     fetchNoticias()
   }, [])
 
-  //const url = "https://pisapapeles.net/wp-json/wp/v2/posts?per_page=12" 
+  //const url = "https://pisapapeles.net/wp-json/wp/v2/posts?per_page=12"
+  //const url = "https://chocale.cl/wp-json/wp/v2/posts?per_page=12" 
   const url = "https://reportediario.cl/wp-json/wp/v2/posts?per_page=12"
 
   const fetchNoticias = async () => {
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error('No se puedo conectar con la API')
+    try {
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error('No se puedo conectar con la API')
+      }
+      const data = await response.json()
+      setNoticias(data)
+      setNoticiasFiltradas(data)
+    } catch (error) {
+      console.error('Error al obtener noticias:', error);
     }
-    const data = await response.json()
-    setNoticias(data)
-    setNoticiasFiltradas(data)
   }
-
   const transformarFecha = (fecha) => {
     const fechaHora = new Date(fecha);
     const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
@@ -48,7 +52,7 @@ function MiApi() {
       <header>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#"><img src="./logo.webp" alt="" /></a>
-          <Buscador noticias={noticias} setNoticiasFiltradas={setNoticiasFiltradas}/>
+          <Buscador noticias={noticias} setNoticiasFiltradas={setNoticiasFiltradas} />
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -67,7 +71,7 @@ function MiApi() {
           </div>
         </nav>
       </header>
-      <Noticias noticiasFiltradas={noticiasFiltradas} transformarFecha={transformarFecha} setNoticiasFiltradas={setNoticiasFiltradas}/>
+      <Noticias noticiasFiltradas={noticiasFiltradas} transformarFecha={transformarFecha} setNoticiasFiltradas={setNoticiasFiltradas} />
     </>
   )
 }

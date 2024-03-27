@@ -11,23 +11,23 @@ function Noticias(props) {
             setOrden(false)
         }
     }
-    // Función para ordenar los artículos por fecha de publicación
+    // Funciónes para ordenar los artículos por fecha de publicación
     const ordenarPorFechaASC = () => {
         const noticiasOrdenadasASC = [...props.noticiasFiltradas].sort((a, b) => {
-            return new Date(a.date) - new Date(b.date); // Ordena de más nuevo a más antiguo
+            return new Date(a.date) - new Date(b.date); 
         });
         props.setNoticiasFiltradas(noticiasOrdenadasASC);
     };
     const ordenarPorFechaDSC = () => {
         const noticiasOrdenadasDSC = [...props.noticiasFiltradas].sort((a, b) => {
-            return new Date(b.date) - new Date(a.date); // Ordena de más nuevo a más antiguo
+            return new Date(b.date) - new Date(a.date); 
         });
         props.setNoticiasFiltradas(noticiasOrdenadasDSC);
     };
 
     return (
         <>
-            <div class="col text-center">
+            <div className="col text-center">
                 <button type="button" className="btn btn-link" onClick={handleOrden}>{orden ? '>> VER Mas nuevos primero <<' : '>> VER Mas antiguos primero <<'}</button>
             </div>
             <div className='carta'>
