@@ -17,7 +17,7 @@ Este proyecto es una aplicación construida con React y Vite que consume la API 
 
 ## Video Explicativo
 
-Puedes ver el video explicativo de este proyecto en el siguiente enlace: [URL del video]
+Puedes ver el video explicativo de este proyecto en el siguiente enlace: https://youtu.be/82EVPl8tC_4
 
 ## Tecnologías Utilizadas
 
